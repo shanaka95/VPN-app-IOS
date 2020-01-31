@@ -32,7 +32,7 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   flutter_vpn:
-    path: /root/.pub-cache/hosted/pub.dartlang.org/flutter_vpn-0.7.0
+#    path: /root/.pub-cache/hosted/pub.dartlang.org/flutter_vpn-0.7.0
   animator: ^0.1.1
 
 dev_dependencies:
