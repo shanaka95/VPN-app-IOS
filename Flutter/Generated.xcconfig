@@ -1,0 +1,9 @@
+// This is a generated file; do not edit or check into version control.
+FLUTTER_ROOT=/media/cruz/myhdd/flutter
+FLUTTER_APPLICATION_PATH=/home/cruz/Desktop/fiverr/2/flutter_vpn_example-master
+FLUTTER_TARGET=lib/main.dart
+FLUTTER_BUILD_DIR=build
+SYMROOT=${SOURCE_ROOT}/../build/ios
+FLUTTER_FRAMEWORK_DIR=/media/cruz/myhdd/flutter/bin/cache/artifacts/engine/ios
+FLUTTER_BUILD_NAME=0.0.1
+FLUTTER_BUILD_NUMBER=1
