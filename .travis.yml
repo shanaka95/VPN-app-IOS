@@ -1,0 +1,32 @@
+os: osx
+language: generic
+before_script:
+- brew update
+- brew install --HEAD usbmuxd
+- brew unlink usbmuxd
+- brew link usbmuxd
+- brew install --HEAD libimobiledevice
+- brew install ideviceinstaller
+- brew install ios-deploy
+- git clone https://github.com/flutter/flutter.git -b beta --depth 1
+script:
+- flutter/bin/flutter build ios --debug --no-codesign
+cache:
+  directories:
+  - "$HOME/.pub-cache"
+before_deploy:
+- pushd build/ios/iphoneos
+- mkdir Payload
+- cd Payload
+- ln -s ../Runner.app
+- cd ..
+- zip -r app.ipa Payload
+- popd
+deploy:
+  provider: releases
+  api_key:
+    secure: RqxbEFAkd65F+uobMtK3Nj6nmgOwQwsAQ7/U8Hq7Z2D8dJpHN5DfQmCG8qfz/onNJovmrCrsmExPckCSX4GBAxOzTdD4F3HBANWB6B0AO8H85Huz6T/Bw+8LMyWWfOSEgMQNfYHBZwFIJwVF7nUOLxYF+wJa/fY80itJEx73KDcHew20ZM4sqp2j2LE49uWQnsuYDpNPvlFt1+kuqK6BfVMyCpdOBLb9/We3bNCwxkIf8RHdGNwAE+hRCg67EoJzgFWBSPyoFRVRmQ77eYSNK8YyJv7nAEX9IoVyoNoF+n5ysQVNr2rfxD3YX0E+GAUxAX4Biv+pczclPGhlyvkLP2RMEm+AJtd4dSaKd3CC9BeL/7SvFas6UktMhk4DPdUlbRLFaLPKG54hMJdP4e8+6EZ3zxxmxLdF6irH7FmmUe+0LBK5VtdZ+7nXk66jkw7378AV7acXyGQBm/zW94wsjQUjDYvlM5M0x/OeFRsw9lkhtBz93+OKzzyXBhTN6KyrxRUoxlLtr14ZOmLCGUoolPs+KbZ+MhpTPP2Rz3+kGpsdlqsslgUsNgFW1G003REH9l6qKgl95svlBc/WuhSit7gIF9bqpKUXvX75v3Or+1WB4T3tYvTmsJxgRSaoBklBMYcltO7+N+ZunnylulV36NaXHQoh4D+8IttACe1qzcs=
+  file: build/ios/iphoneos/app.ipa
+  skip_cleanup: true #important or your built app would be deleted 
+  on:
+    repo: shanaka95/VPN-app-IOS
